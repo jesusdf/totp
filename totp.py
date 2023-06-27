@@ -34,7 +34,13 @@ def normalize_key(key):
 
 
 def main():
-    key = getpass.getpass(prompt="TOTP key: ")
+    args = [int(x) if x.isdigit() else x for x in sys.argv[1:]]
+    
+    if (len(args) == 0):
+        key = getpass.getpass(prompt="TOTP key: ")
+    else:
+        key = args[0]
+    
     print(totp(normalize_key(key)))
 
 
